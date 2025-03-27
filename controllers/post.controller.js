@@ -156,7 +156,7 @@ export const getLikePost = async (req, res) => {
         path: "user.comment",
         select: "-password",
       });
-    res.status(200).json({ likePost });
+    res.status(200).json(likePost);
   } catch (error) {
     console.log("Error in getLikePost: ", error);
     res.status(500).json({ error: "Internal Server Error" });
