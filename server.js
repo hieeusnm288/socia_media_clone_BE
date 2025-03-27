@@ -7,6 +7,7 @@ import dotenv from "dotenv";
 import connectDB from "./db/connectDB.js";
 import cookieParser from "cookie-parser";
 import { v2 as cloudinary } from "cloudinary";
+import cors from "cors";
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -18,8 +19,6 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization"); // Cho phép các headers
   next();
 });
-
-import cors from "cors";
 
 app.use(
   cors({
