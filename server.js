@@ -28,12 +28,12 @@ app.use(
 );
 
 cloudinary.config({
-  cloud_name: process.env.CLOuDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
+  cloud_name: "dvmpaqgtv",
+  api_key: "857565737895978",
+  api_secret: "igQ2pk2Id4RChjBLNmpsTCweQ_Y",
 });
 
-app.use(express.json());
+app.use(express.json({ limit: "5mb" }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 

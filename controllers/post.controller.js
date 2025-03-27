@@ -18,7 +18,7 @@ export const createPost = async (req, res) => {
     }
 
     if (img) {
-      const uploadResponse = await cloudinary.uploader(img);
+      const uploadResponse = await cloudinary.uploader.upload(img);
       // img = uploadResponse.url;
       img = uploadResponse.secure_url;
     }
