@@ -68,12 +68,8 @@ export const logout = async (req, res) => {
       httpOnly: true,
       expires: new Date(0), // 🔥 Xóa ngay lập tức
       sameSite: "None",
-      secure: process.env.NODE_ENV !== "development", // 🔥 Chỉ bật trên HTTPS
-      path: "/", // 🔥 Đảm bảo xóa ở mọi đường dẫn
-      domain:
-        process.env.NODE_ENV === "development"
-          ? "localhost"
-          : "socia-media-clone-fe.onrender.com", // 🔥 Xóa đúng domain
+      secure: process.env.NODE_ENV !== "development", // 🔥 Bật khi dùng HTTPS
+      path: "/", // 🔥 Xóa toàn bộ cookie
     });
     res.status(200).json({ message: "Logout successful" });
   } catch (error) {
