@@ -22,8 +22,11 @@ app.use((req, res, next) => {
 
 app.use(
   cors({
-    origin: "http://localhost:3000", // Chỉ cho phép frontend này truy cập
-    credentials: true, // Bật chế độ gửi cookie & auth token
+    origin: [
+      "http://localhost:3000",
+      "https://socia-media-clone-fe.onrender.com",
+    ], // Cho phép nhiều origin
+    credentials: true, // Hỗ trợ gửi cookie & auth token
   })
 );
 
