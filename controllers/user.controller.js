@@ -119,27 +119,22 @@ export const updateUser = async (req, res) => {
       const salt = await bcrypt.genSalt(10);
       user.password = await bcrypt.hash(newPassword, salt);
     }
-    console.log("profileImg", profileImg);
-
     if (profileImg) {
-      console.log("123");
       if (user.profileImg) {
-        await cloudinary.uploader
-          .destroy(user.profileImg.split("/"))
-          .pop()
-          .split(".")[0];
+        const publicId = user.profileImg.split("/").pop().split(".")[0]; // Lấy publicId trực tiếp
+        const result = await cloudinary.uploader.destroy(publicId);
       }
-      const uploadResponse = await cloudinary.uploader(profileImg);
+
+      const uploadResponse = await cloudinary.uploader.upload(profileImg);
       profileImg = uploadResponse.url;
     }
     if (coverImg) {
       if (user.coverImg) {
-        await cloudinary.uploader
-          .destroy(user.coverImg.split("/"))
-          .pop()
-          .split(".")[0];
+        const publicId = user.coverImg.split("/").pop().split(".")[0]; // Lấy publicId trực tiếp
+        const result = await cloudinary.uploader.destroy(publicId);
       }
-      const uploadResponse = await cloudinary.uploader(coverImg);
+
+      const uploadResponse = await cloudinary.uploader.upload(coverImg);
       coverImg = uploadResponse.url;
     }
     user.fullname = fullname || user.fullname;
