@@ -65,6 +65,10 @@ export const login = async (req, res) => {
 export const logout = async (req, res) => {
   try {
     res.cookie("jwt", "", {
+      httpOnly: true, // 🔥 Bắt buộc để cookie chỉ có thể bị backend quản lý
+      expires: new Date(0), // 🔥 Xóa cookie ngay lập tức
+      sameSite: "None", // 🔥 Bắt buộc nếu frontend & backend khác domain
+      secure: process.env.NODE_ENV === "production", // 🔥
       maxAge: 0,
     });
     res.status(200).json({ message: "Logout successful" });
