@@ -68,9 +68,12 @@ export const logout = async (req, res) => {
       httpOnly: true,
       expires: new Date(0), // 🔥 Xóa ngay lập tức
       sameSite: "None",
-      secure: process.env.NODE_ENV !== "development", // 🔥 Bật khi dùng HTTPS
-      path: "/", // 🔥 Xóa toàn bộ cookie
+      secure: process.env.NODE_ENV !== "development" ? true : false, // 🔥 Bắt buộc nếu chạy HTTPS
+      path: "/", // 🔥 Đảm bảo xóa toàn bộ cookie
+      domain:
+        process.env.NODE_ENV !== "development" ? ".onrender.com" : "localhost",
     });
+
     res.status(200).json({ message: "Logout successful" });
   } catch (error) {
     console.log(error);
